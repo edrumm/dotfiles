@@ -39,8 +39,13 @@ function MyDiff()
   endif
 endfunction
 
+"Plugins
+call plug#begin()
+    Plug 'preservim/nerdtree'
+call plug#end()
+
 " Custom setup
-" Set colout scheme
+" Set colour scheme
 set t_Co=256
 set background=dark
 colorscheme PaperColor
@@ -55,10 +60,28 @@ set nobackup
 " set backupdir=~/vimtmp//,.
 " set directory=~/vimtmp//,.
 
-" gVim setup
+" Set formatting
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 if has('gui_running')
-	" set guioptions -=T
-	" set guioptions -=r
-	set go -=T "toolbar
-	set go -=r "scrollbar
+    set go -=T "toolbar
+    set go -=r "scrollbar
+    set go=Ace
+    set lines=50 columns=150
+else
+    if exists("+lines")
+        set lines=50
+    endif
+    if exists("+columns")
+        set columns=150
+    endif
 endif
+
+let g:NERDTreeWinSize=40
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+autocmd BufEnter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | endif
+
