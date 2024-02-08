@@ -11,8 +11,8 @@ EXCLUDE=(
     '*.exe'
 )
 
-BACKUP_FILE="$OUT_DIR/$(timestamp)/_wsl_bu.zip"
+BACKUP_FILE="$OUT_DIR/$(timestamp)/_wsl_bu.zip" 
 
-create_zip "$BACKUP_FILE" "$WORKSPACE_DIR" "$EXCLUDE"
+create_zip "$BACKUP_FILE" "$WORKSPACE_DIR" "${EXCLUDE[@]}"
 
 log "done"

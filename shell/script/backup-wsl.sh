@@ -15,6 +15,6 @@ FILES=(
 
 BACKUP_FILE="$OUT_DIR/$(timestamp)/_wsl_bu.zip"
 
-create_zip_files_only "$BACKUP_FILE" "$ROOT_DIR" "$FILES"
+create_zip_files_only "$BACKUP_FILE" "$ROOT_DIR" "${FILES[@]}"
 
 log "done"

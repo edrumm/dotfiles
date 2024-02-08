@@ -21,19 +21,23 @@ str_join() {
 }
 
 create_zip() {
-    # $1 out dir, $2 root dir, $3 exclude list
-    if [ -z "$3" ]; then
-        zip -rp "$1" "$2"
+    if [ $# -gt 2 ]; then
+        target=$1
+        src=$2; shift 2
+        exclude=($@)
+        zip -rp "$target" "$src" -x "${exclude[@]}"    
     else
-        zip -rp "$1" "$2" -x "${$3[@]}"
+        zip -rp "$1" "$2"
     fi
 }
 
 create_zip_files_only() {
-    # $1 out dir, $2 root dir, $3 file list to include
-    zip -jp "$1" "{$3[@]/#/$2/}"
+    target=$1
+    src=$2; shift 2
+    files=($@)
+    zip -jp "$target" "${files[@]/#/$src/}"
 }
 
 batch_copy() {
-    cp -fr "${$1[@]}" "$2"
+    cp -fr $(find "$2" -name "$3") "$1"
 }
