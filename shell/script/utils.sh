@@ -33,3 +33,7 @@ create_zip_files_only() {
     # $1 out dir, $2 root dir, $3 file list to include
     zip -jp "$1" "{$3[@]/#/$2/}"
 }
+
+batch_copy() {
+    cp -fr "${$1[@]}" "$2"
+}
