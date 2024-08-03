@@ -1,5 +1,6 @@
 import argparse, json, logging, os
 
+
 """
 fmt_json.py
 Reformat a minified JSON file to readable JSON
