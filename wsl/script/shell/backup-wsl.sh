@@ -3,7 +3,7 @@
 source ./utils.sh
 
 ROOT_DIR=/home/userid
-OUT_DIR="$ROOT_DIR/backup" # /mnt/c/ ?
+OUT_DIR="$ROOT_DIR/backup"
 
 FILES=(
     '.gradle/gradle.properties'
