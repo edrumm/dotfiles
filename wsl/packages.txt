@@ -1,5 +1,9 @@
 build-essential
 gradle
 kubectl
-openjdk-18-jre-headless
-postgresql-common
+openjdk-18-jdk
+postgresql-contrib
+postgresql
+python3.11
+unzip
+zip

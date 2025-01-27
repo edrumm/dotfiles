@@ -65,18 +65,14 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Set encoding
+set encoding=utf-8
+set fileencoding=utf-8
+
 if has('gui_running')
     set go -=T "toolbar
     set go -=r "scrollbar
     set go=Ace
-    set lines=75 columns=225
-else
-    if exists("+lines")
-        set lines=75
-    endif
-    if exists("+columns")
-        set columns=225
-    endif
 endif
 
 let g:NERDTreeWinSize=40
@@ -84,4 +80,5 @@ let g:NERDTreeWinSize=40
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 autocmd BufEnter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | endif
+autocmd GUIEnter * simalt ~x
 

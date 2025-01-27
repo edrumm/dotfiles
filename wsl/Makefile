@@ -8,6 +8,7 @@ install-python-packages:
 
 set-symlinks:
 	ln -s ~/script/shell script
+	ln -s "/mnt/c/users/esd06/AppData/local/Programs/Microsoft VS Code/" VSCode
 
 makefile-test:
 	@echo "OK" 

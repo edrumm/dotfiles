@@ -1,5 +1,5 @@
 [wsl2]
-memory=8GB
+memory=16GB
 processors=1
 swap=4GB
 # pageReporting=false
