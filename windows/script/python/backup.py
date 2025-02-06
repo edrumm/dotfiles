@@ -101,8 +101,7 @@ def backup_all_to_zip(root_path, drive, archive: ZipFile):
             path = os.path.join(root, file)
 
             if not any(path.endswith(ext) for ext in IGNORE_EXTENSIONS):
-                sys.stdout.write(f"\rARCHIVING: {path}             ")
-                sys.stdout.flush()
+                print(f"\rWRITING: {path}", end="\r")
                 archive.write(path, path.replace(f"{drive}:", drive))
 
 
