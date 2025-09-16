@@ -1,5 +1,6 @@
 import os, sys
 from datetime import datetime
+from dotenv import load_dotenv, dotenv_values
 from zipfile import ZipFile, ZIP_DEFLATED
 
 
@@ -7,7 +8,8 @@ WIN_SRC_PATH = "C:\\Users\\esd06"
 
 DATA_SRC_PATH = "D:\\"
 
-BACKUP_PATH = os.path.join(DATA_SRC_PATH, "backup")
+load_dotenv()
+BACKUP_PATH = os.getenv("BACKUP_PATH")
 
 BACKUP_TIMESTAMP = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
 
@@ -25,10 +27,13 @@ IGNORE_EXTENSIONS = [
     ".dat.LOG2",
     ".regtrans-ms",
     ".TM.blf",
-    ".DAT"
+    ".DAT",
+    ".hc"
 ]
 
 IGNORE_DIRS = [
+    ".cargo",
+    ".rustup",
     ".git",
     "node_modules",
     "OneDrive",
@@ -75,7 +80,8 @@ IGNORE_DIRS = [
     ".runtime",
     "music",
     "managed plugins",
-    "bin"
+    "bin",
+    "Proton Drive"
 ]
 
 
@@ -102,13 +108,17 @@ def backup_all_to_zip(root_path, drive, archive: ZipFile):
 
             if not any(path.endswith(ext) for ext in IGNORE_EXTENSIONS):
                 print(f"\rWRITING: {path}", end="\r")
-                archive.write(path, path.replace(f"{drive}:", drive))
+                try:
+                    archive.write(path, path.replace(f"{drive}:", drive))
+                except Exception as e:
+                    print(f"\n ERR: {str(e)}")
+                    print(f"SKIPPED {path}")
 
 
 if __name__ == "__main__":
     try:
         archive = ZipFile(BACKUP_DEST, mode="w", compression=ZIP_DEFLATED)
-
+        
         backup_all_to_zip(DATA_SRC_PATH, "D", archive)
         backup_all_to_zip(WIN_SRC_PATH, "C", archive)
 

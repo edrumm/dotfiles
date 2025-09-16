@@ -1,5 +1,4 @@
 . "D:\dev\dotfiles\windows\script\shell\utils.ps1"
-Write-Log "Run Disable-Recall.ps1"
 
 $recallPath = "C:\Windows\System32\Recall.exe"
 if (Test-Path $recallPath) {
@@ -16,5 +15,3 @@ if (Test-Path $recallPath) {
 } else {
     Write-Log "Recall service not found"
 }
-
-Write-Log "Done"
