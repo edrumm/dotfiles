@@ -1,8 +1,9 @@
 {
+    "chat.agent.enabled": false,
+    "chat.commandCenter.enabled": false,
     "editor.formatOnSave": true,
     "editor.renderWhitespace": "all",
-    "editor.workingDirectories": [{ "mode": "auto" }],
-    "files.trimWhitespace": true,
+    "inlineChat.accessibleDiffView": "off",
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": true,
     "search.exclude": {
