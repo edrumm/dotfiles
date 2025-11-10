@@ -1,9 +1,0 @@
-build-essential
-gradle
-kubectl
-openjdk-18-jdk
-postgresql-contrib
-postgresql
-python3.11
-unzip
-zip
