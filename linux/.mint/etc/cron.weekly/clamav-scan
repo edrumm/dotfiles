@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# clamav-scan
+
+address=""
+
+# Update ClamAV signatures
+freshclam
+
+# Scan paths
+paths="/home/esd06/Documents /home/esd06/Downloads /home/esd06/Music /home/esd06/Pictures /home/esd06/Videos"
+
+# Run weekly scan
+clamdscan --multiscan --fdpass $paths > /var/log/clamav/scan.log
+
+# Send results
+mail -s "[$(hostname)] Weekly ClamAV Scan: $(date +'%Y-%m-%d')" $address < /var/log/clamav/scan.log
