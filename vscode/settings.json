@@ -1,6 +1,7 @@
 {
     "chat.agent.enabled": false,
     "chat.commandCenter.enabled": false,
+	"chat.disableAIFeatures": true,
     "editor.formatOnSave": true,
     "editor.renderWhitespace": "all",
     "inlineChat.accessibleDiffView": "off",
@@ -9,5 +10,6 @@
     "search.exclude": {
         "**/.git": true,
         "**/node_modules": true
-    }
+    },
+	"workbench.colorTheme": "Default Dark+"
 }

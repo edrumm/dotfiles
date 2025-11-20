@@ -81,7 +81,8 @@ IGNORE_DIRS = [
     "music",
     "managed plugins",
     "bin",
-    "Proton Drive"
+    "Proton Drive",
+    "Vortex Mods"
 ]
 
 
