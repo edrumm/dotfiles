@@ -86,16 +86,6 @@ IGNORE_DIRS = [
 ]
 
 
-def add_misc_files(file_paths, archive: ZipFile):
-    """ TODO """
-    pass
-
-
-def add_misc_dirs(dirs, archive: ZipFile):
-    """ TODO """
-    pass
-
-
 """
 TODO - improve sys.stdout.write call
 TODO - handle permission errors better
