@@ -39,9 +39,21 @@ function MyDiff()
   endif
 endfunction
 
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 "Plugins
 call plug#begin()
     Plug 'preservim/nerdtree'
+    Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
 " Custom setup
@@ -73,6 +85,7 @@ if has('gui_running')
     set go -=T "toolbar
     set go -=r "scrollbar
     set go=Ace
+    set lines=50 columns=150
 endif
 
 let g:NERDTreeWinSize=40
@@ -81,4 +94,16 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 autocmd BufEnter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | endif
 autocmd GUIEnter * simalt ~x
+
+cnoreabbrev q qa
+
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Down> <C-w>j
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Right> <C-w>l
+
+nnoremap <C-w><C-h> :vertical resize -5<CR>
+nnoremap <C-w><C-l> :vertical resize +5<CR>
+nnoremap <C-w><C-j> :resize +2<CR>
+nnoremap <C-w><C-k> :resize -2<CR>
 
