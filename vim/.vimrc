@@ -56,7 +56,9 @@ call plug#begin()
     Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
-" Custom setup
+" ======================================================================================================
+" CUSTOM CONFIG
+" ======================================================================================================
 " Set colour scheme
 set t_Co=256
 set background=dark
@@ -66,21 +68,19 @@ colorscheme PaperColor
 set number
 set laststatus=2
 
-" Set additional files
 set noundofile
 set nobackup
 " set backupdir=~/vimtmp//,.
 " set directory=~/vimtmp//,.
 
-" Set formatting
+" Set ormat and encoding
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-" Set encoding
 set encoding=utf-8
 set fileencoding=utf-8
 
+" Set GUI options
 if has('gui_running')
     set go -=T "toolbar
     set go -=r "scrollbar
@@ -88,13 +88,14 @@ if has('gui_running')
     set lines=50 columns=150
 endif
 
+" Set autocmds
 let g:NERDTreeWinSize=40
-
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 autocmd BufEnter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() | quit | endif
 autocmd GUIEnter * simalt ~x
 
+" Custom keybinds and abbreviations
 cnoreabbrev q qa
 
 nnoremap <C-Left> <C-w>h
@@ -106,4 +107,3 @@ nnoremap <C-w><C-h> :vertical resize -5<CR>
 nnoremap <C-w><C-l> :vertical resize +5<CR>
 nnoremap <C-w><C-j> :resize +2<CR>
 nnoremap <C-w><C-k> :resize -2<CR>
-

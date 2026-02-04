@@ -1,15 +1,22 @@
 {
-    "chat.agent.enabled": false,
-    "chat.commandCenter.enabled": false,
-	"chat.disableAIFeatures": true,
-    "editor.formatOnSave": true,
-    "editor.renderWhitespace": "all",
-    "inlineChat.accessibleDiffView": "off",
-    "python.testing.pytestEnabled": true,
-    "python.testing.unittestEnabled": true,
-    "search.exclude": {
-        "**/.git": true,
-        "**/node_modules": true
-    },
-	"workbench.colorTheme": "Default Dark+"
+  "chat.agent.enabled": false,
+  "chat.commandCenter.enabled": false,
+  "chat.disableAIFeatures": true,
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "all",
+  "git.confirmSync": false,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "python.createEnvironment.trigger": "off",
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": true,
+  "restoreTerminals.terminals": [],
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  },
+  "telemetry.feedback.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "workbench.colorTheme": "Adonis"
 }
