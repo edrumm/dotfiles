@@ -1,0 +1,9 @@
+services:
+  glance:
+    container_name: glance
+    image: docker.io/glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+    ports:
+      - "127.0.0.1:8082:8080"

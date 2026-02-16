@@ -1,0 +1,9 @@
+services:
+  trilium:
+    container_name: trilium
+    image: docker.io/triliumnext/trilium
+    restart: unless-stopped
+    volumes:
+      - /home/containers/trilium/data:/home/node/trilium-data
+    ports:
+      - "127.0.0.1:8083:8080"
