@@ -1,0 +1,49 @@
+services:
+  app:
+    image: docker.io/fireflyiii/core:latest
+    hostname: app
+    container_name: firefly_iii_core
+    restart: always
+    volumes:
+      - /home/containers/firefly_iii/firefly_iii_upload:/var/www/html/storage/upload
+    env_file: .env
+    networks:
+      - firefly_iii
+    ports:
+      - "127.0.0.1:8084:8080"
+    depends_on:
+      - db
+  db:
+    image: docker.io/postgres
+    hostname: db
+    container_name: firefly_iii_db
+    restart: always
+    env_file: .db.env
+    networks:
+      - firefly_iii
+    volumes:
+      - /home/containers/firefly_iii/firefly_iii_db:/var/lib/postgresql
+  cron:
+    #
+    # To make this work, set STATIC_CRON_TOKEN in your .env file or as an environment variable
+    # The STATIC_CRON_TOKEN must be *exactly* 32 characters long
+    #
+    image: docker.io/alpine
+    restart: always
+    container_name: firefly_iii_cron
+    env_file: .env
+    command: >
+      sh -c ' apk add --no-cache tzdata && ln -s /usr/share/zoneinfo/$TZ /etc/localtime && echo "0 3 * * * wget -qO- http://app:8080/api/v1/cron/$STATIC_CRON_TOKEN" | crontab - && crond -f -L /dev/stdout'
+    networks:
+      - firefly_iii
+    depends_on:
+      - app
+
+volumes:
+  firefly_iii_upload:
+  firefly_iii_db:
+
+
+networks:
+  firefly_iii:
+    driver: bridge
