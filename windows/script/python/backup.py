@@ -28,7 +28,10 @@ IGNORE_EXTENSIONS = [
     ".regtrans-ms",
     ".TM.blf",
     ".DAT",
-    ".hc"
+    ".hc",
+    ".tar",
+    ".gz",
+    ".br"
 ]
 
 IGNORE_DIRS = [
@@ -82,7 +85,12 @@ IGNORE_DIRS = [
     "managed plugins",
     "bin",
     "Proton Drive",
-    "Vortex Mods"
+    "Vortex Mods",
+    "Nextcloud",
+    "Nextcloud4",
+    ".matplotlib",
+    "My Games",
+    "OpenRCT2"
 ]
 
 
@@ -119,4 +127,4 @@ if __name__ == "__main__":
         print(f"CREATED ZIP AT {BACKUP_DEST}")
 
     except Exception as e:
-        print(e.with_traceback(), file=sys.stderr)
+        print(e, file=sys.stderr)
