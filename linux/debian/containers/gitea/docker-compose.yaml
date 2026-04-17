@@ -1,0 +1,18 @@
+x-podman:
+  in_pod: false
+
+services:
+  server:
+    container_name: gitea
+    image: docker.gitea.com/gitea:1.25.5-rootless
+    restart: always
+    volumes:
+      - /home/containers/gitea/data:/var/lib/gitea
+      - ./config:/etc/gitea
+      # - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "127.0.0.1:3001:3000"
+      - "2222:2222"
+    user: "1000:1000"
+    userns_mode: "keep-id:uid=1000,gid=1000"
