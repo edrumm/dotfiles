@@ -1,0 +1,15 @@
+[Unit]
+Description=HomeAssistant (podman-compose)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/containers/homeassistant
+ExecStart=/usr/bin/podman-compose up -d --force-recreate
+ExecStop=/usr/bin/podman-compose down
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

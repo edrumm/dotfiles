@@ -1,0 +1,25 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      # - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8123:8123"
+    # network_mode: host
+    environment:
+      TZ: Europe/London
+    privileged: true
+    devices:
+      - /dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Lite_MG21_143e9883ada2ef11b6588c6661ce3355-if00-port0:/dev/ttyUSB0
+    group_add:
+      - keep-groups
+    networks:
+      - iot
+
+networks:
+  iot:
+    external: true
